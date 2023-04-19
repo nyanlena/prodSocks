@@ -8,7 +8,6 @@
     "webpack": "webpack -wd eval-source-map",
     "dev": "babel-node src/server.js",
     "prep-db": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate&& npx sequelize-cli db:seed:all"
-
   },
   "keywords": [],
   "author": "",
@@ -38,6 +37,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
-    "sequelize": "^6.31.0"
+    "sequelize": "^6.31.0",
+    "sqlite3": "^5.1.6"
   }
 }
