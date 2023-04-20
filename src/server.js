@@ -8,6 +8,8 @@ import jsxRender from './utils/customRender';
 import { pathMiddleware } from './middlewares';
 import indexRouter from './routes/indexRouter';
 import generatorRouter from './routes/generatorRouter'
+import apiRouter from './routes/apiRouter';
+import authRouter from './routes/authRouter'
 
 dotenv.config();
 
@@ -43,7 +45,8 @@ app.use((req, res, next) => {
   console.log(res.locals.user, '<--------');
   next();
 });
-
+app.use('/', apiRouter);
+app.use('/', authRouter);
 app.use('/', indexRouter);
 app.use('/', generatorRouter)
 

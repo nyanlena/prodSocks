@@ -4,7 +4,7 @@ export default function Main() {
   return (
     <div>
       <h1>Самое время быть уникальным! Смоделируй свою любимую пару носков!</h1>
-      <button type="button">Создать свою идеальную пару носков!</button>
+      <a href='/generator' >Создать свою идеальную пару носков!</a>
     </div>
   );
 }

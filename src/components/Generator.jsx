@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Generator({ allColor, allPicture, allPattern, currentUser }) {
+export default function Generator({ allColor, allPicture, allPattern,user }) {
   const [colors,setColors] = useState(allColor);
   const [pictures,setPictures] = useState(allPicture);
   const [patterns, setPatterns] = useState(allPattern);
@@ -10,7 +10,7 @@ export default function Generator({ allColor, allPicture, allPattern, currentUse
     pattern:'',
     picture:'',
   });
-  console.log(sock);
+  console.log(user);
   const colorClickHandler = (e) => {
     const col = e.target.value;
     setSock((prev)=>({...prev, color: col}))
@@ -26,14 +26,14 @@ export default function Generator({ allColor, allPicture, allPattern, currentUse
     setSock((prev)=>({...prev, pattern: result}))
   };
   const addToFavoritesHandler = async (e) => {
-    const curId = currentUser.id;
+    const curId =user.id;
     const obj = {...sock,curId};
-    await axios.post('/generator/favorite', sock);
+    await axios.post('/generator/favorite', obj);
   };
   const addToBascketHandler = async (e) => {
-    const curId = currentUser.id;
-    const obj = {...sock,curId};
-    await axios.post('/generator/basket', sock);
+    const curId =user.id;
+    const obj = {...sock,curId}; 
+    await axios.post('/generator/basket', obj);
   };
 
 

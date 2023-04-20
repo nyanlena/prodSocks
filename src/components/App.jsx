@@ -19,6 +19,7 @@ export default function App({ user, allColor, allPicture, allPattern }) {
           path="/generator"
           element={
             <Generator
+              user={user}
               allColor={allColor}
               allPicture={allPicture}
               allPattern={allPattern}
