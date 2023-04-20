@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 import jsxRender from './utils/customRender';
 import { pathMiddleware } from './middlewares';
 import indexRouter from './routes/indexRouter';
+import generatorRouter from './routes/generatorRouter'
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(pathMiddleware);
 app.use(express.static('public'));
 
 app.use('/', indexRouter);
+app.use('/', generatorRouter)
 
 app.listen(PORT, () => {
   console.log('server start on port ', PORT);
