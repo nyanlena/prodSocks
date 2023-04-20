@@ -5,11 +5,12 @@ import * as dotenv from 'dotenv';
 import session from 'express-session';
 import store from 'session-file-store';
 import jsxRender from './utils/customRender';
-import { pathMiddleware } from './middlewares';
+import { authMiddleware, pathMiddleware } from './middlewares';
 import indexRouter from './routes/indexRouter';
 import generatorRouter from './routes/generatorRouter'
 import apiRouter from './routes/apiRouter';
 import authRouter from './routes/authRouter'
+import userRouter from './routes/userRouter'
 
 dotenv.config();
 
@@ -34,21 +35,23 @@ const sessionConfig = {
 };
 
 app.use(express.json());
-app.use(pathMiddleware);
+// app.use(pathMiddleware);
 app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionConfig));
-app.use((req, res, next) => {
-  res.locals.path = req.originalURL;
-  res.locals.user = req.session?.user;
-  console.log(res.locals.user, '<--------');
-  next();
-});
-app.use('/', apiRouter);
-app.use('/', authRouter);
+app.use(authMiddleware);
+// app.use((req, res, next) => {
+//   res.locals.path = req.originalURL;
+//   res.locals.user = req.session?.user;
+//   console.log(res.locals.user, '<--------');
+//   next();
+// });
+// app.use('/', apiRouter);
+app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/', generatorRouter)
+app.use('/user', userRouter)
 
 app.listen(PORT, () => {
   console.log('server start on port ', PORT);

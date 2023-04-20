@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 export default function Navbar({ user }) {
-  console.log(user);
   const clickHandlerSignUp = async () => {
     const res = await axios('/user/signup');
     if (res.status === 200) {

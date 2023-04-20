@@ -10,7 +10,7 @@ export default function Generator({ allColor, allPicture, allPattern,user }) {
     pattern:'',
     picture:'',
   });
-  console.log(user);
+  console.log('user',user);
   const colorClickHandler = (e) => {
     const col = e.target.value;
     setSock((prev)=>({...prev, color: col}))
@@ -59,8 +59,9 @@ export default function Generator({ allColor, allPicture, allPattern,user }) {
       {patterns.map((elem)=>{return <div key={elem.id}><button value={`${sock.pattern}`} onClick={patternClickHandler} style={{border:'none'}}><img style={{width:'200px', height:'200px'}} src={`${elem.name}`}/></button></div>})}
     </div>
     <div>
-    <button onClick={addToFavoritesHandler}>В избранное</button>
-    <button onClick={addToBascketHandler}>В корзину</button>
+      {user && <button onClick={addToFavoritesHandler}>В избранное</button>}
+      {user && <button onClick={addToBascketHandler}>В корзину</button>}
+    
     </div>
   </>);
 }

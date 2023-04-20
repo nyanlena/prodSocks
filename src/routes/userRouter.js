@@ -1,13 +1,14 @@
 import express from 'express';
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.get('/signup', (req, res) => {
+userRouter.get('/signup', (req, res) => {
   res.render('Layout', {});
 });
 
-router.get('/login', (req, res) => {
-  res.render('Layout', { user: req.session?.user });
+userRouter.get('/login', (req, res) => {
+  const user = req.session?.user;
+  res.render('Layout', { user });
 });
 
-export default router;
+export default userRouter;
