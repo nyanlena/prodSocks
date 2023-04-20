@@ -2,7 +2,7 @@ import express from 'express';
 import Sequelize from 'sequelize';
 
 import nodemailer from 'nodemailer';
-import { Basket } from '../../db/models';
+import { Basket, Sock, Color, Pattern, Picture } from '../../db/models';
 
 const router = express.Router();
 
@@ -21,8 +21,31 @@ const mailOptions = {
   text: 'Новый заказ',
 };
 router.get('/', async (req, res) => {
-  const buy = Basket.findAll();
-  const initState = { buy };
+  const usId = res.locals.user.id;
+  const buy = await Basket.findAll({ where: { user_id: usId }, raw: true });
+  const arr = await Basket.findAll({
+    where: { user_id: usId },
+    raw: true,
+    include: [
+      {
+        model: Sock,
+        attributes: ['id', 'color_id', 'pattern_id', 'picture_id'],
+        include: [
+          { model: Pattern, attributes: ['name'] },
+          { model: Color, attributes: ['name'] },
+          { model: Picture, attributes: ['name'] },
+        ],
+        raw: true,
+      },
+    ],
+  });
+  const arr2 = arr.map((elem) => ({
+    sock_id: elem.sock_id,
+    pattern: elem['Sock.Pattern.name'],
+    color: elem['Sock.Color.name'],
+    picture: elem['Sock.Picture.name'],
+  }));
+  const initState = { arr2 };
   res.render('Layout', initState);
 });
 
