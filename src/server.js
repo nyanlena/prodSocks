@@ -7,8 +7,7 @@ import store from 'session-file-store';
 import jsxRender from './utils/customRender';
 import { pathMiddleware } from './middlewares';
 import indexRouter from './routes/indexRouter';
-import authRouter from './routes/authRouter';
-import userRouter from './routes/userRouter';
+import generatorRouter from './routes/generatorRouter'
 
 dotenv.config();
 
@@ -46,8 +45,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
+app.use('/', generatorRouter)
 
 app.listen(PORT, () => {
   console.log('server start on port ', PORT);
