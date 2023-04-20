@@ -1,7 +1,22 @@
-import React from 'react';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Generator from "./Generator";
 
-export default function App() {
+export default function App({ allColor, allPicture, allPattern }) {
   return (
-    <div>HElllOOOOOOOO</div>
+    <>
+      <Routes>
+        <Route
+          path="/generator"
+          element={
+            <Generator
+              allColor={allColor}
+              allPicture={allPicture}
+              allPattern={allPattern}
+            />
+          }
+        />
+      </Routes>
+    </>
   );
 }
