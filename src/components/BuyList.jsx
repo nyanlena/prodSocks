@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function List({ arr2 }) {
-  console.log(arr2, 'sdfsdfdddddddddddddddddd');
+
   const [socks, setSocks] = useState(arr2);
   const [selectedId, setSelectedId] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -15,7 +16,7 @@ function List({ arr2 }) {
   };
   useEffect(() => {
     if (selectedId) {
-      console.log(selectedId);
+
       fetch('/buy', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
@@ -30,8 +31,12 @@ function List({ arr2 }) {
     }
   }, [selectedId]);
 
-  const handleShareClick = (sockId) => {
-    setSelectedId(sockId);
+  const handleShareClick = async(sockId) => {
+    const res = await axios.post('buy/send',socks);
+    console.log(res)
+    if (res.status === 200) {
+      window.location = '/';
+    }
   };
 
   return (
@@ -46,20 +51,20 @@ function List({ arr2 }) {
         }}
       >
         {socks.map((elem) => {
-          console.log(elem, '///////////////////////////');
+        
 
           return (
             <div key={elem.sock_id} style={{ margin: '20px' }}>
               <div className="favorite-links">
                 <button
-                  className="favorite-link"
+                  className="btn btn-success"
                   type="button"
                   onClick={() => handleShareClick(elem.sock_id)}
                 >
                   Купить
                 </button>
                 <button
-                  className="favorite-link"
+                  className="btn btn-danger"
                   type="button"
                   onClick={() => deleteHandler(elem.sock_id)}
                 >
@@ -70,21 +75,22 @@ function List({ arr2 }) {
               <div
                 style={{
                   position: 'relative',
-                  width: '400px',
-                  height: '400px',
+                  width: '300px',
+                  height: '300px',
                   backgroundColor: `${elem.color}`,
+                  display:'flex'
                 }}
               >
                 <img
-                  style={{ position: 'absolute', width: '400px', height: '400px' }}
+                  style={{ position: 'absolute', width: '300px', height: '300px' }}
                   src={`${elem.pattern}`}
                 />
                 <img
-                  style={{ position: 'absolute', width: '400px', height: '400px' }}
+                  style={{ position: 'absolute', width: '60px', height: '60px', marginLeft:'125px', marginTop:'50px' }}
                   src={`${elem.picture}`}
                 />
                 <img
-                  style={{ position: 'absolute', width: '400px', height: '400px' }}
+                  style={{ position: 'absolute', width: '300px', height: '300px' }}
                   src={`./../images/originSock.png`}
                 />
               </div>

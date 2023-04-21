@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
   //   (sock) => sock.sock_id,
   // );
 
-  console.log('!!!!!!!!!!!!!=>', arr1);
+
   const initState = { arr1 };
 
   res.render('Layout', initState);
@@ -52,10 +52,11 @@ router.post('/:id', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(shareLink); // Отправляем клиенту ссылку на отправку в ответ
 });
+
 router.delete('/:id', async (req, res) => {
   try {
     const favorite = req.params.id;
-    console.log('++++++++++++++++++++', favorite);
+   
     // Находим и удаляем запись с указанным ID
     // await
     await Favorite.destroy({ where: { sock_id: favorite } });

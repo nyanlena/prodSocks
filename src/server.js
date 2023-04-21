@@ -44,13 +44,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionConfig));
 app.use(authMiddleware);
-// app.use((req, res, next) => {
-//   res.locals.path = req.originalURL;
-//   res.locals.user = req.session?.user;
-//   console.log(res.locals.user, '<--------');
-//   next();
-// });
-// app.use('/', apiRouter);
+
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
 

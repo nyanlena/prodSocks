@@ -7,6 +7,7 @@ import Generator from "./Generator";
 import FavoritList from './FavoritList';
 import BuyList from './BuyList';
 import React from 'react';
+import Footer from './Pages/Footer';
 
 export default function App({ user, allColor, allPicture, allPattern, arr1, arr2 }) {
   return (
@@ -29,6 +30,7 @@ export default function App({ user, allColor, allPicture, allPattern, arr1, arr2
           <Route path="/favorites" element={<FavoritList arr1={arr1} />} />
         <Route path="/buy" element={<BuyList arr2={arr2} />} />
       </Routes>
+      <Footer/>
     </div>
   )
 }

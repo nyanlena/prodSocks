@@ -7,19 +7,29 @@ import { Basket, Sock, Color, Pattern, Picture } from '../../db/models';
 const router = express.Router();
 
 const transporter = nodemailer.createTransport({
-  service: 'mail',
+  host:'smtp.mail.ru',
+  port:465,
+  secure:true,
   auth: {
     user: 'a_karvatskaya@mail.ru', // email отправителя
-    pass: '25453Ann_', // пароль отправителя
+    pass: 'nUFWpWbZDbRAaE2gnePP', // пароль отправителя
   },
 });
 
+const mailer = (message) => {
+  transporter.sendMail(message,(error,info)=>{
+    if(error) return console.log(error);
+    console.log('email send', info)
+  });
+}
+
 const mailOptions = {
   from: 'a_karvatskaya@mail.ru',
-  to: 'info@enjoysocks.ru', // email получателя
+  to: 'sofameeee@gmail.com', // email получателя
   subject: 'Новый заказ',
   text: 'Новый заказ',
 };
+
 router.get('/', async (req, res) => {
   const usId = res.locals.user.id;
   const buy = await Basket.findAll({ where: { user_id: usId }, raw: true });
@@ -49,16 +59,11 @@ router.get('/', async (req, res) => {
   res.render('Layout', initState);
 });
 
-transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(`Email sent: ${info.response}`);
-  }
-});
+
 router.post('/send', (req, res) => {
-  sendMail(); // вызываем функцию отправки письма
-  res.redirect('/');
+  mailer(mailOptions);
+// вызываем функцию отправки письма
+  res.sendStatus(200);
 });
 
 router.delete('/:id', async (req, res) => {
