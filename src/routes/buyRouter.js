@@ -66,7 +66,7 @@ router.delete('/:id', async (req, res) => {
     const buy = req.params.id;
     // Находим и удаляем запись с указанным ID
     // await
-    buy.destroy({ where: { id: req.params.id } });
+    await Basket.destroy({ where: { sock_id: buy } });
 
     // console.log("++++++++++++++++++++", id);
     // Перенаправляем пользователя на страницу со списком всех записей
