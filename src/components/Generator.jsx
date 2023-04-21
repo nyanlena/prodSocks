@@ -38,12 +38,15 @@ export default function Generator({ allColor, allPicture, allPattern, currentUse
 
 
   return(<>
-    <div>
-      <h1>Дизайн твоего носка:</h1>
-      <div style ={{position:'relative', width:'400px', height:'400px',backgroundColor:`${sock.color}`}}>
-          <img style={{position:'absolute',width:'400px', height:'400px'}} src={`${sock.pattern}`}/>
-          <img style={{position:'absolute',width:'400px', height:'400px'}} src={`${sock.picture}`}/>
-          <img style={{position:'absolute',width:'400px',height:'400px'}} src={`./../images/originSock.png`}/>
+    <div style={{borderRadius:'10px'}}>
+      
+      <div style ={{display:'flex', justifyContent:'center', position:'relative', }}>
+          <div style={{position:'absolute',width:'600px', height:'600px', backgroundColor:`${sock.color}`}}></div>
+          <img style={{position:'absolute',width:'600px', height:'600px'}} src={`${sock.pattern}`}/>
+          <img style={{position:'absolute',width:'120px', height:'120px',marginTop:'120px',marginLeft:'15px'}} src={`${sock.picture}`}/>
+          <img style={{position:'absolute',width:'600px',height:'600px'}} src={`./../images/originSock.png`}/>
+          <h1 style={{position:'absolute'}}>Дизайн носка</h1>
+          
       </div>
     </div>
     <div>
