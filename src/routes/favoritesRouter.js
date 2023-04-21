@@ -50,7 +50,7 @@ router.post('/:id', (req, res) => {
   const shareLink = `${baseLink}${encodeURIComponent(message)}`;
   // console.log(shareLink);
   res.setHeader('Content-Type', 'application/json');
-  res.send(shareLink.json()); // Отправляем клиенту ссылку на отправку в ответ
+  res.send(shareLink); // Отправляем клиенту ссылку на отправку в ответ
 });
 
 router.delete('/:id', async (req, res) => {

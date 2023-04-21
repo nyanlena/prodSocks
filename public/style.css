@@ -27,3 +27,15 @@
   margin: 0;
   padding: 0;
 }
+.centered-text {
+  font-family: 'Luminari', fantasy;
+  font-size: 24px;
+  text-align: center;
+  margin: 0 auto;
+}
+nav.navbar {
+  background-color: beige !important;
+}
+.list-container {
+  background-image: url('https://pibig.info/uploads/posts/2022-07/1657199744_1-pibig-info-p-bezhevii-tsvet-fon-1.jpg');
+}
