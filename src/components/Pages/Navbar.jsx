@@ -33,8 +33,8 @@ export default function Navbar({ user }) {
       }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          <img src="./../images.logo.png" alt="logo" />
+        <a className="navbar-brand" href="/">
+          <img src={"./../images/logo.png"} alt="logo" style={{width:'40px', height:'40px'}} />
         </a>
         <button
           className="navbar-toggler"
@@ -93,6 +93,13 @@ export default function Navbar({ user }) {
               <li className="nav-item">
                 <a className="nav-link" href="/buy">
                   Корзина
+                </a>
+              </li>
+            )}
+            {user && (
+              <li className="nav-item">
+                <a className="nav-link" href="/generator">
+                  Генератор
                 </a>
               </li>
             )}

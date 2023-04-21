@@ -77,8 +77,16 @@ export default function Generator({ allColor, allPicture, allPattern, user }) {
             </div>
           </div>
           <div>
-            {user && <button onClick={addToFavoritesHandler}>В избранное</button>}
-            {user && <button onClick={addToBascketHandler}>В корзину</button>}
+            {user && (
+              <button onClick={addToFavoritesHandler} class="btn btn-info">
+                В избранное
+              </button>
+            )}
+            {user && (
+              <button onClick={addToBascketHandler} class="btn btn-success">
+                В корзину
+              </button>
+            )}
           </div>
         </div>
         <div
@@ -87,16 +95,26 @@ export default function Generator({ allColor, allPicture, allPattern, user }) {
             width: '400px',
             height: '400px',
             backgroundColor: `${sock.color}`,
+            display: 'flex',
           }}
         >
           <img
             style={{ position: 'absolute', width: '400px', height: '400px' }}
             src={`${sock.pattern}`}
           />
-          <img
-            style={{ position: 'absolute', width: '400px', height: '400px' }}
-            src={`${sock.picture}`}
-          />
+          {sock.picture && (
+            <img
+              style={{
+                position: 'absolute',
+                width: '80px',
+                height: '80px',
+                marginLeft: '165px',
+                marginTop: '80px',
+              }}
+              src={`${sock.picture}`}
+            />
+          )}
+
           <img
             style={{ position: 'absolute', width: '400px', height: '400px' }}
             src={`./../images/originSock.png`}
@@ -104,13 +122,13 @@ export default function Generator({ allColor, allPicture, allPattern, user }) {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div>
-            <h5>Выбери цвет:</h5>
+            <h5>Выбери цвет</h5>
             {colors.map((elem) => {
               return (
                 <button
                   style={{
-                    width: '20px',
-                    height: '20px',
+                    width: '30px',
+                    height: '30px',
                     borderRadius: '50%',
                     backgroundColor: `${elem.name}`,
                   }}
@@ -156,3 +174,6 @@ export default function Generator({ allColor, allPicture, allPattern, user }) {
 //     </div>
 //   </>);
 // }
+
+
+

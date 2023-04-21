@@ -7,10 +7,10 @@ function List({ arr1 }) {
   const [shareLink, setShareLink] = useState('');
 
   const deleteHandler = async (elem) => {
-    console.log(elem, '[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[');
+  
     const response = await fetch(`/favorites/${elem}`, { method: 'delete' });
     if (response.status === 200) {
-      console.log(socks);
+
       setSocks((prev) => prev.filter((sock) => sock.sock_id !== elem));
     }
   };
@@ -65,14 +65,14 @@ function List({ arr1 }) {
             <div key={elem.sock_id} style={{ margin: '20px' }}>
               <div className="favorite-links">
                 <button
-                  className="favorite-link"
+                  class="btn btn-success"
                   type="button"
                   onClick={() => handleShareClick(elem.sock_id)}
                 >
                   Поделиться
                 </button>
                 <button
-                  className="favorite-link"
+                  class="btn btn-danger"
                   type="button"
                   onClick={() => deleteHandler(elem.sock_id)}
                 >
@@ -83,21 +83,28 @@ function List({ arr1 }) {
               <div
                 style={{
                   position: 'relative',
-                  width: '400px',
-                  height: '400px',
+                  width: '300px',
+                  height: '300px',
                   backgroundColor: `${elem.color}`,
+                  display: 'flex',
                 }}
               >
                 <img
-                  style={{ position: 'absolute', width: '400px', height: '400px' }}
+                  style={{ position: 'absolute', width: '300px', height: '300px' }}
                   src={`${elem.pattern}`}
                 />
                 <img
-                  style={{ position: 'absolute', width: '400px', height: '400px' }}
+                  style={{
+                    position: 'absolute',
+                    width: '60px',
+                    height: '60px',
+                    marginLeft: '125px',
+                    marginTop: '50px',
+                  }}
                   src={`${elem.picture}`}
                 />
                 <img
-                  style={{ position: 'absolute', width: '400px', height: '400px' }}
+                  style={{ position: 'absolute', width: '300px', height: '300px' }}
                   src={`./../images/originSock.png`}
                 />
               </div>
