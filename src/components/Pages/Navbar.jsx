@@ -28,8 +28,8 @@ export default function Navbar({ user }) {
       {!user && <button type="button" onClick={clickHandlerSignUp}>Регестрация</button>}
       {!user && <button type="button" onClick={clickHandlerLogin}>Вход</button>}
       {user && <button type="button" onClick={clickHandler}>Выйти</button>}
-      {user && <a href="/user/favorite">Избранное</a>}
-      {user && <a href="/user/basket">Корзина</a>}
+      {user && <a href="/favorites">Избранное</a>}
+      {user && <a href="/buy">Корзина</a>}
     </div>
   );
 }

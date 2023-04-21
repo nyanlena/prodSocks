@@ -7,10 +7,13 @@ import store from 'session-file-store';
 import jsxRender from './utils/customRender';
 import { authMiddleware, pathMiddleware } from './middlewares';
 import indexRouter from './routes/indexRouter';
+import favoritesRouter from './routes/favoritesRouter';
+import buyRouter from './routes/buyRouter';
 import generatorRouter from './routes/generatorRouter'
 import apiRouter from './routes/apiRouter';
 import authRouter from './routes/authRouter'
 import userRouter from './routes/userRouter'
+
 
 dotenv.config();
 
@@ -50,8 +53,12 @@ app.use(authMiddleware);
 // app.use('/', apiRouter);
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
+
+app.use('/favorites', favoritesRouter);
+app.use('/buy', buyRouter);
 app.use('/', generatorRouter)
 app.use('/user', userRouter)
+
 
 app.listen(PORT, () => {
   console.log('server start on port ', PORT);
