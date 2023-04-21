@@ -22,14 +22,83 @@ export default function Navbar({ user }) {
       window.location = '/';
     }
   };
+
   return (
-    <div>
-      <img src="../images.logo.png" alt="logo" />
-      {!user && <button type="button" onClick={clickHandlerSignUp}>Регестрация</button>}
-      {!user && <button type="button" onClick={clickHandlerLogin}>Вход</button>}
-      {user && <button type="button" onClick={clickHandler}>Выйти</button>}
-      {user && <a href="/favorites">Избранное</a>}
-      {user && <a href="/buy">Корзина</a>}
-    </div>
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light"
+      style={{
+        backgroundImage:
+          "url('https://pibig.info/uploads/posts/2022-07/1657199753_2-pibig-info-p-bezhevii-tsvet-fon-2.jpg')",
+        border: '3px solid black',
+      }}
+    >
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          <img src="./../images.logo.png" alt="logo" />
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            {!user && (
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="btn btn-outline-primary me-2"
+                  onClick={clickHandlerSignUp}
+                >
+                  Регистрация
+                </button>
+              </li>
+            )}
+            {!user && (
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="btn btn-outline-primary me-2"
+                  onClick={clickHandlerLogin}
+                >
+                  Вход
+                </button>
+              </li>
+            )}
+            {user && (
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="btn btn-outline-primary me-2"
+                  onClick={clickHandler}
+                >
+                  Выйти
+                </button>
+              </li>
+            )}
+            {user && (
+              <li className="nav-item">
+                <a className="nav-link" href="/favorites">
+                  Избранное
+                </a>
+              </li>
+            )}
+            {user && (
+              <li className="nav-item">
+                <a className="nav-link" href="/buy">
+                  Корзина
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 }

@@ -14,6 +14,21 @@ function List({ arr1 }) {
       setSocks((prev) => prev.filter((sock) => sock.sock_id !== elem));
     }
   };
+  const handleShareClick = (sockId) => {
+    setSelectedId(sockId);
+    fetch('/favorites', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: sockId }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setShareLink(data.link);
+        setShowModal(true);
+      })
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
     if (selectedId) {
       console.log(selectedId);
@@ -31,18 +46,23 @@ function List({ arr1 }) {
     }
   }, [selectedId]);
 
-  const handleShareClick = (sockId) => {
-    setSelectedId(sockId);
-  };
-
   return (
     <>
-      <div>
+      <div
+        style={{
+          backgroundImage:
+            'url(https://www.meme-arsenal.com/memes/05b5860399c7b64e72d6f76ef3c14731.jpg)',
+          minHeight: '100vh',
+          display: 'flex',
+          flexWrap: 'wrap',
+          padding: '20px',
+        }}
+      >
         {socks.map((elem) => {
           console.log(elem, '///////////////////////////');
 
           return (
-            <div key={elem.sock_id}>
+            <div key={elem.sock_id} style={{ margin: '20px' }}>
               <div className="favorite-links">
                 <button
                   className="favorite-link"
